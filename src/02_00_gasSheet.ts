@@ -24,7 +24,7 @@ export default class GasSheet {
     constructor(sheet){
         this.sheet = sheet;
         const rawColumns:any[] = sheet
-            .getRange(1,1,1,sheet.getLastColumn())
+            .getRange(1,1,1,this.getLastColumn())
             .getValues()[0];
         const columns:{columnNum: number;name:string}[] =
             rawColumns.map((dataOfcolumn,idx)=>{
@@ -32,7 +32,7 @@ export default class GasSheet {
             })
         this.columns = columns;
         const rawData:any[][] = sheet
-            .getRange(2,1,sheet.getLastRow() - 1,sheet.getLastColumn())
+            .getRange(2,1,this.getLastRow() - 1,this.getLastColumn())
             .getValues();
         const data:{}[] =
             rawData.map((dataOfRow,idx)=>{
@@ -46,8 +46,23 @@ export default class GasSheet {
         this.data = data;
     }
     /**
+     * シートの最終行の行番号を返す
+     * @return number
+     */
+    getLastRow(){
+        return this.sheet.getLastRow();
+    }
+    /**
+     * シートの最終列の列番号を返す
+     * @return number
+     */
+    getLastColumn(){
+        return this.sheet.getLastColumn();
+    }
+    /**
      * 引数で指定したキーの値が合致する複数のオブジェクトを配列に入れて返す
-     * @param keyValue {}[]
+     * @param keyValue {}
+     * @return {}[]
      */
     where(keyValue):{}[] {
         return _.where(this.data,keyValue);
@@ -55,6 +70,7 @@ export default class GasSheet {
     /**
      * 引数で指定したキーの値が合致した最初のオブジェクトを返す
      * @param keyValue {}
+     * @return {}
      */
     findWere(keyValue):{} {
         return _.findWere(this.data,keyValue);

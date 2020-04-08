@@ -1,24 +1,18 @@
 import PostSlack from './01_postSlack';
-import GasSheet from './02_gasSheet';
+import MeigenSheet from './02_01_meigenSheet';
 
-const ACTIVESHEET = SpreadsheetApp.getActiveSheet();
 const postSlack = new PostSlack();
-const gasSheet = new GasSheet(ACTIVESHEET);
-const sheet = gasSheet.sheet;
+const meigenSheet = new MeigenSheet();
 const main = ():void =>{
-    const lastRow = sheet.getLastRow();
-    const isSentAll = sheet.getRange(2,4,lastRow - 1);
     let done = false;
-    const data = gasSheet.data;
-    data.map((value:any,index:number) => {
-        const rangeIsSent = sheet.getRange(value.rowNum,4);
-        const title = value.person + value.info;
-        const text = value.meigen;
-        if(!rangeIsSent.getValue() && !done){
+    meigenSheet.data.map((dataOfRow:any,index:number) => {
+        const title = dataOfRow.person + dataOfRow.info;
+        const text = dataOfRow.meigen;
+        if(!meigenSheet.getValueIsSent(dataOfRow.rowNum) && !done){
             postSlack.post(title,text);
-            rangeIsSent.setValue(true);
-            if(value.rowNum >= lastRow){
-                isSentAll.clearContent();
+            meigenSheet.setValueIsSent(dataOfRow.rowNum,true);
+            if(dataOfRow.rowNum >= meigenSheet.getLastRow()){
+                meigenSheet.clearRangeIsSentAll();
             }
             done = true;
         }
