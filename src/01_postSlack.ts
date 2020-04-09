@@ -1,3 +1,6 @@
+/**
+ * slack通知
+ */
 const PO:any = PropertiesService.getScriptProperties();
 const HOOKSURL:string = PO.getProperty('HOOKSURL');
 

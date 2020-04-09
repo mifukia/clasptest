@@ -1,3 +1,6 @@
+/**
+ * スプレッドシートサブクラス　meigenシート
+ */
 import GasSheet from './02_00_gasSheet';
 const PO:any = PropertiesService.getScriptProperties();
 const SHEETID:string = PO.getProperty('SHEETID');

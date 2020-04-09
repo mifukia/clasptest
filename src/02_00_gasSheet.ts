@@ -1,6 +1,10 @@
+/**
+ * スプレッドシート基底クラス
+ */
 const _ = Underscore.load();
 export default class GasSheet {
     sheet: any;
+
     /**
      *  [ { columnNum: 1, name: 'meigen' },
         { columnNum: 2, name: 'person' },
@@ -8,11 +12,13 @@ export default class GasSheet {
         { columnNum: 4, name: 'isSent' } ]
      */
     columns:{columnNum: number;name:string}[];
+
     /**
      * [['人生とは自転車のようなものだ。\r\n倒れないようにするには走らなければならない。',
-        'アインシュタイン','理論物理学者、ノーベル物理学賞受賞 / 1879～1955',true ],]
+        'アインシュタイン','ω理論物理学者、ノーベル物理学賞受賞 / 1879～1955',true ],]
      */
     rawData:any[][];
+
     /**
      * [{ rowNum: 3,
         meigen: '人生とは自転車のようなものだ。\r\n倒れないようにするには走らなければならない。',
@@ -21,6 +27,7 @@ export default class GasSheet {
         isSent: true },]
      */
     data:{}[];
+    
     constructor(sheet){
         this.sheet = sheet;
         const rawColumns:any[] = sheet
