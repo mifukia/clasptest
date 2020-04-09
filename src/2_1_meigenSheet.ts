@@ -1,5 +1,7 @@
 import GasSheet from './02_00_gasSheet';
-const SHEETS = SpreadsheetApp.openById('1kbV6Im1Jjgsnjd30cyc07kh0jEXPZwoQbGnZJZ3k7aU');
+const PO:any = PropertiesService.getScriptProperties();
+const SHEETID:string = PO.getProperty('SHEETID');
+const SHEETS = SpreadsheetApp.openById(SHEETID);
 const MEIGENSHEET = SHEETS.getSheetByName('meigen');
 
 export default class MeigenSheet extends GasSheet {
