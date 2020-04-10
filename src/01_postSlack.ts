@@ -3,7 +3,6 @@
  */
 const PO:any = PropertiesService.getScriptProperties();
 const HOOKSURL:string = PO.getProperty('HOOKSURL');
-
 export default class PostSlack {
     title: string | number;
     text: string | number;

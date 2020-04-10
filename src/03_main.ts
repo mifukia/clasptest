@@ -3,7 +3,6 @@
  */
 import PostSlack from './01_postSlack';
 import MeigenSheet from './02_01_meigenSheet';
-
 const postSlack:PostSlack = new PostSlack();
 const meigenSheet:MeigenSheet = new MeigenSheet();
 
